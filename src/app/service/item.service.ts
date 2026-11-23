@@ -12,4 +12,9 @@ export class ItemService {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.itemsUrl);
   }
+
+  addItem(item: Omit<Item, 'id' | 'stockUrgency'>): Observable<Item> {
+    return this.http
+      .post<Item>(this.itemsUrl, item);
+  };
 }

@@ -8,24 +8,17 @@
       <h3 class="section-title">Items</h3>
 
       <div class="filter-controls">
-        <input
-          type="text"
-          class="filter-input"
-          placeholder="Search items..."
-          [ngModel]="searchTerm()"
-          (ngModelChange)="searchTerm.set($event)"
-        />
+        <input type="text" class="filter-input" placeholder="Filter by name..."
+          [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)" />
 
-        <select
-          class="filter-select"
-          [ngModel]="selectedUrgency()"
-          (ngModelChange)="selectedUrgency.set($event)"
-        >
-          <option value="ALL">All Stock Levels</option>
+        <select class="filter-select" [ngModel]="selectedUrgency()" (ngModelChange)="selectedUrgency.set($event)">
+          <option value="ALL">All Stock Urgencies</option>
           <option value="HIGH">High</option>
           <option value="MEDIUM">Medium</option>
           <option value="LOW">Low</option>
         </select>
+
+        <a (click)="openNewItemForm()" class="btn-create">+ New Item</a>
       </div>
     </div>
 
@@ -51,4 +44,8 @@
       <p class="empty-state">No items match your search.</p>
     }
   </section>
+
+  @if (isNewItemFormOpen()) {
+    <app-create-item (closeForm)="closeNewItemForm()" (addedItem)="showNewItem($event)"/>
+  }
 }
