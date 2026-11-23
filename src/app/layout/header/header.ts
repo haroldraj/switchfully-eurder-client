@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLinkActive],
   selector: 'app-header',
   styleUrl: './header.css',
   templateUrl: './header.html',
 })
-export class Header {}
+export class Header {
+  protected readonly title = signal('Eurder');
+}
