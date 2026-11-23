@@ -10,7 +10,6 @@ export class ItemService {
   private readonly itemsUrl = `${environment.backendUrl}/items`;
 
   getItems(): Observable<Item[]> {
-    return this.http
-      .get<Item[]>(this.itemsUrl);
+    return this.http.get<Item[]>(this.itemsUrl);
   }
 }
