@@ -1,0 +1,54 @@
+@if (items.isLoading()) {
+  <p class="text-muted">Loading items...</p>
+} @else if (items.error()) {
+  <p class="alert alert-danger">Oops, could not load the items. Is the backend running?</p>
+} @else {
+  <section>
+    <div class="section-header">
+      <h3 class="section-title">Items</h3>
+
+      <div class="filter-controls">
+        <input
+          type="text"
+          class="filter-input"
+          placeholder="Search items..."
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+        />
+
+        <select
+          class="filter-select"
+          [ngModel]="selectedUrgency()"
+          (ngModelChange)="selectedUrgency.set($event)"
+        >
+          <option value="ALL">All Stock Levels</option>
+          <option value="HIGH">High</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="LOW">Low</option>
+        </select>
+      </div>
+    </div>
+
+    @if (filteredItems().length > 0) {
+      <ul class="card-list">
+        @for (item of filteredItems(); track item.id) {
+          <li class="card">
+            <div class="card-title">
+              <h3>{{ item.name }}</h3>
+            </div>
+            <img class="card-image" [src]="itemImageSrc" [alt]="item.name" />
+            <div class="card-footer">
+              <div>Price: &euro; {{ item.price | number:'1.2-2' }}</div>
+              <div class="stock">
+                <span>{{ item.stockUrgency }}</span>
+                <img class="icon" [src]="urgencyImages[item.stockUrgency]" [alt]="item.stockUrgency" />
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-state">No items match your search.</p>
+    }
+  </section>
+}

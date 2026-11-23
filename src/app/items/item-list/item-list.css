@@ -1,0 +1,108 @@
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0F294A;
+  margin: 0 0 24px 0;
+}
+
+/* 3-Column Card Grid */
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .card-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fade-in Animation */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Individual Item Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(15, 41, 74, 0.05);
+  cursor: pointer;
+  animation: cardFadeIn 0.35s ease-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  border-color: #1D63DC;
+  box-shadow: 0 10px 20px rgba(15, 41, 74, 0.12);
+}
+
+/* Card Title */
+.card-title {
+  text-align: center;
+  font-size: 21px;
+  font-weight: 700;
+  color: #0F294A;
+  margin: 0 0 14px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 0 10px 0;
+  display: block;
+}
+
+/* Card Footer (Price & Stock Urgency) */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #1E293B;
+}
+
+.stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
