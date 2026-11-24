@@ -3,9 +3,10 @@ import { ItemService } from '../../service/item.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { StockUrgency } from '../../model/StockUrgency';
 import { DecimalPipe } from '@angular/common';
-import { FormBuilder, FormsModule } from '@angular/forms';
-import { Item } from '../../model/Item';
+import { FormsModule } from '@angular/forms';
 import { CreateItem } from '../create-item/create-item';
+import { Router } from '@angular/router';
+import { Item } from '../../model/Item';
 
 @Component({
   imports: [DecimalPipe, FormsModule, CreateItem],
@@ -15,6 +16,7 @@ import { CreateItem } from '../create-item/create-item';
 })
 export class ItemList {
   private readonly itemService = inject(ItemService);
+  private readonly router = inject(Router);
   protected readonly searchTerm = signal<string>('');
   protected readonly selectedUrgency = signal<string>('ALL');
   protected readonly itemImageSrc = '/item-image.png';
@@ -50,8 +52,7 @@ export class ItemList {
     this.isNewItemFormOpen.set(false);
   }
 
-  showNewItem(item: Item): void {
-    this.closeNewItemForm();
-    this.items.reload();
+  async selectItem(item: Item) {
+    await this.router.navigate(['/items', item.id]);
   }
 }

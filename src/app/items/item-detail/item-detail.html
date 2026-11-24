@@ -1,1 +1,40 @@
-<p>item-detail works!</p>
+@if (item.isLoading()) {
+  <p class="text-muted">Loading items...</p>
+} @else if (item.error()) {
+  <p class="alert alert-danger">Oops, could not load the items. Is the backend running?</p>
+} @else if (item.hasValue()) {
+  <section>
+    <div class="section-header">
+      <h3 class="section-title">Item</h3>
+      <h2 class="item-id">{{ item.value().id }}</h2>
+    </div>
+      <form class="modal-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" [value]="item.value().name" readonly/>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" rows="5" [value]="item.value().description" readonly></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="price">Price (&euro;)</label>
+            <input id="price" [value]="item.value().price" readonly/>
+          </div>
+
+          <div class="form-group">
+            <label for="stockAmount">Stock Amount</label>
+            <input id="stockAmount" [value]="item.value().stockAmount" readonly/>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-edit">Edit</button>
+          <button type="button" class="btn-cancel" [routerLink]="['/items']">Back</button>
+        </div>
+      </form>
+  </section>
+}
