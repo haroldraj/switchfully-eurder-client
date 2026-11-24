@@ -5,6 +5,7 @@ import { form, FormField, FormRoot, maxLength, min, required } from '@angular/fo
 import { firstValueFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [FormRoot, FormsModule, FormField],
@@ -14,8 +15,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class CreateItem {
   private readonly itemService = inject(ItemService);
+  private readonly router = inject(Router);
   protected readonly newItem = signal<Item>(emptyItem);
-  readonly addedItem = output<Item>();
   readonly closeForm = output<void>();
 
   protected readonly itemForm = form(
@@ -37,7 +38,7 @@ export class CreateItem {
             const result = await firstValueFrom(this.itemService.addItem(this.newItem()));
             alert('Item added');
             this.itemForm().reset();
-            this.addedItem.emit(result);
+            await this.router.navigate(['/items', result.id]);
           } catch (err) {
             const httpErr = err as HttpErrorResponse;
             alert(httpErr.error?.message || 'An error occurred');
