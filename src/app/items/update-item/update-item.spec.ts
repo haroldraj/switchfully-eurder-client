@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Menubar } from './menubar';
+import { UpdateItem } from './update-item';
 
-describe('Menubar', () => {
-  let component: Menubar;
-  let fixture: ComponentFixture<Menubar>;
+describe('UpdateItem', () => {
+  let component: UpdateItem;
+  let fixture: ComponentFixture<UpdateItem>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Menubar],
+      imports: [UpdateItem],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Menubar);
+    fixture = TestBed.createComponent(UpdateItem);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

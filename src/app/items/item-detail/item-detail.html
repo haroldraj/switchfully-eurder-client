@@ -32,9 +32,12 @@
         </div>
 
         <div class="modal-actions">
-          <button type="submit" class="btn-edit">Edit</button>
+          <button type="submit" class="btn-edit" (click)="openUpdateItemForm()">Edit</button>
           <button type="button" class="btn-cancel" [routerLink]="['/items']">Back</button>
         </div>
       </form>
   </section>
+  @if (isUpdateItemFormOpen()) {
+    <app-update-item (closeForm)="closeUpdateItemForm()" [itemToUpdate]="item.value()"/>
+  }
 }

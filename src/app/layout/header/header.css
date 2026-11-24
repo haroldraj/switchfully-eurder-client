@@ -49,4 +49,5 @@ header nav a.active {
   color: #1D63DC;
   background-color: #EFF6FF;
   text-decoration: none;
+  border-bottom: 1px solid;
 }

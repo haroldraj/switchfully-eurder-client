@@ -23,13 +23,13 @@ export class CreateItem {
     this.newItem,
     (item) => {
       required(item.name, { message: 'Name is required' });
-      maxLength(item.name, 50, {message: 'Name cannot exceed 50 characters'});
-      required(item.description, {message: 'Description is required'});
-      maxLength(item.description, 255, {message: 'Description cannot exceed 255 characters'});
+      maxLength(item.name, 50, { message: 'Name cannot exceed 50 characters' });
+      required(item.description, { message: 'Description is required' });
+      maxLength(item.description, 255, { message: 'Description cannot exceed 255 characters' });
       required(item.price, { message: 'Price is required' });
-      min(item.price, 0.01, {message: 'Price must be at least 0.01'})
+      min(item.price, 0.01, { message: 'Price must be at least 0.01' });
       required(item.stockAmount, { message: 'Stock amount is required' });
-      min(item.stockAmount, 1, {message: 'Stock must be at leat 1'})
+      min(item.stockAmount, 1, { message: 'Stock must be at leat 1' });
     },
     {
       submission: {
@@ -53,8 +53,7 @@ export class CreateItem {
   }
 
   isItemFormInvalid() {
-    return this.itemForm.name().invalid() || this.itemForm.stockAmount().invalid()
-      || this.itemForm.description().invalid() || this.itemForm.price().invalid();
+    return this.itemForm().invalid();
   }
 }
 

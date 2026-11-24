@@ -11,13 +11,17 @@ export class ItemService {
 
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.itemsUrl);
-  };
+  }
 
   addItem(item: Omit<Item, 'id' | 'stockUrgency'>): Observable<Item> {
     return this.http.post<Item>(this.itemsUrl, item);
-  };
+  }
 
   getItemById(id: number): Observable<Item> {
     return this.http.get<Item>(`${this.itemsUrl}/${id}`);
-  };
+  }
+
+  updateItem(item: Item): Observable<void> {
+    return this.http.put<void>(`${this.itemsUrl}/${item.id}`, item);
+  }
 }
