@@ -164,3 +164,14 @@
   border-radius: 8px;
 }
 
+.item-description-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.description-length {
+  margin-left: auto;
+  white-space: nowrap;
+}

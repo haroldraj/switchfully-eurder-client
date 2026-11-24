@@ -17,11 +17,14 @@
       <div class="form-group">
         <label for="description">Description</label>
         <textarea id="description" rows="3" [formField]="itemForm.description" placeholder="Short item description..."></textarea>
-        @if (itemForm.description().touched()) {
-          @for (error of itemForm.description().errors(); track error) {
-            <div class="text-danger">{{ error.message }}</div>
+        <div class="item-description-footer">
+          @if (itemForm.description().touched()) {
+            @for (error of itemForm.description().errors(); track error) {
+              <div class="text-danger">{{ error.message }}</div>
+            }
           }
-        }
+          <div class="description-length">{{ 255 - itemForm.description().value().length }} / 255</div>
+        </div>
       </div>
 
       <div class="form-row">
