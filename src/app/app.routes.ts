@@ -5,6 +5,12 @@ import { ItemDetail } from './items/item-detail/item-detail';
 
 export const routes: Routes = [
   { path: '', component: ItemList },
-  { path: 'items/new', component: CreateItem },
-  { path: 'items/:id', component: ItemDetail }
+  {
+    path: 'items',
+    children: [
+      { path: '', component: ItemList },
+      { path: 'new', component: CreateItem },
+      { path: ':id', component: ItemDetail },
+    ],
+  },
 ];

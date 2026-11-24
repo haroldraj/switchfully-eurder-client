@@ -5,7 +5,7 @@
     </div>
     <form [formRoot]="itemForm" class="modal-form">
       <div class="form-group">
-        <label for="name">Item Name *</label>
+        <label for="name">Name *</label>
         <input id="name" type="text" [formField]="itemForm.name" placeholder="e.g. Wireless Mouse" />
         @if (itemForm.name().touched()) {
           @for (error of itemForm.name().errors(); track error) {
@@ -16,7 +16,7 @@
 
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea id="description" rows="3" [formField]="itemForm.description" placeholder="Short item description..."></textarea>
+        <textarea id="description" rows="5" [formField]="itemForm.description" placeholder="Short item description..."></textarea>
         <div class="item-description-footer">
           @if (itemForm.description().touched()) {
             @for (error of itemForm.description().errors(); track error) {
@@ -50,8 +50,8 @@
       </div>
 
       <div class="modal-actions">
+        <button type="submit" class="btn-submit" [disabled]="isItemFormInvalid()">Save</button>
         <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
-        <button type="submit" class="btn-submit" [disabled]="isItemFormInvalid()">Save Item</button>
       </div>
     </form>
   </div>
